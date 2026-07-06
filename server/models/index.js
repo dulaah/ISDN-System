@@ -2,17 +2,23 @@ const sequelize = require("../config/database");
 
 const Role = require("./Role");
 const User = require("./User");
+const RegionalDistributionCenter = require("./RegionalDistributionCenter");
 
-Role.hasMany(User, {
-  foreignKey: "role_id",
+// Relationships
+Role.hasMany(User, { foreignKey: "role_id" });
+User.belongsTo(Role, { foreignKey: "role_id" });
+
+RegionalDistributionCenter.hasMany(User, {
+  foreignKey: "rdc_id",
 });
 
-User.belongsTo(Role, {
-  foreignKey: "role_id",
+User.belongsTo(RegionalDistributionCenter, {
+  foreignKey: "rdc_id",
 });
 
 module.exports = {
   sequelize,
   Role,
   User,
+  RegionalDistributionCenter,
 };
