@@ -1,5 +1,7 @@
-const User = require("./User");
+const sequelize = require("../config/database");
+
 const Role = require("./Role");
+const User = require("./User");
 
 Role.hasMany(User, {
   foreignKey: "role_id",
@@ -10,6 +12,7 @@ User.belongsTo(Role, {
 });
 
 module.exports = {
-  User,
+  sequelize,
   Role,
+  User,
 };

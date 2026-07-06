@@ -1,23 +1,75 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const authService = require("../services/auth.service");
 
-const register = async (req, res) => {
+const register = async(req,res)=>{
 
-    res.json({
-        message:"Register API"
-    });
+    try{
+
+        const user = await authService.registerUser(req.body);
+
+        res.status(201).json({
+            success:true,
+            message:"User Registered Successfully",
+            data:user
+        });
+
+    }
+    catch(error){
+
+        res.status(400).json({
+
+            success:false,
+
+            message:error.message
+
+        });
+
+    }
 
 };
 
-const login = async (req, res) => {
+const login = async(req,res)=>{
 
-    res.json({
-        message:"Login API"
-    });
+    try{
+
+        const result = await authService.loginUser(
+
+            req.body.email,
+
+            req.body.password
+
+        );
+
+        res.json({
+
+            success:true,
+
+            message:"Login Successful",
+
+            token:result.token,
+
+            user:result.user
+
+        });
+
+    }
+    catch(error){
+
+        res.status(401).json({
+
+            success:false,
+
+            message:error.message
+
+        });
+
+    }
 
 };
 
 module.exports={
+
     register,
+
     login
+
 }
