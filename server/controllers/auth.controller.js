@@ -1,25 +1,44 @@
+const { validationResult } = require("express-validator");
+
 const authService = require("../services/auth.service");
 
-const register = async(req,res)=>{
+const register = async (req, res) => {
 
-    try{
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+
+        return res.status(400).json({
+
+            success: false,
+
+            errors: errors.array()
+
+        });
+
+    }
+
+    try {
 
         const user = await authService.registerUser(req.body);
 
         res.status(201).json({
-            success:true,
-            message:"User Registered Successfully",
-            data:user
+
+            success: true,
+
+            message: "User registered successfully",
+
+            user
+
         });
 
-    }
-    catch(error){
+    } catch (error) {
 
         res.status(400).json({
 
-            success:false,
+            success: false,
 
-            message:error.message
+            message: error.message
 
         });
 
@@ -27,9 +46,23 @@ const register = async(req,res)=>{
 
 };
 
-const login = async(req,res)=>{
+const login = async (req, res) => {
 
-    try{
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+
+        return res.status(400).json({
+
+            success: false,
+
+            errors: errors.array()
+
+        });
+
+    }
+
+    try {
 
         const result = await authService.loginUser(
 
@@ -41,35 +74,39 @@ const login = async(req,res)=>{
 
         res.json({
 
-            success:true,
+            success: true,
 
-            message:"Login Successful",
+            message: "Login Successful",
 
-            token:result.token,
+            token: result.token,
 
-            user:result.user
+            user: result.user
 
         });
 
-    }
-    catch(error){
+    } catch (error) {
 
         res.status(401).json({
 
-            success:false,
+            success: false,
 
-            message:error.message
+            message: error.message
 
         });
 
     }
 
 };
+const profile = async (req, res) => {
+    res.json({
+        success: true,
+        message: "Profile fetched successfully",
+        user: req.user
+    });
+};
 
-module.exports={
-
+module.exports = {
     register,
-
-    login
-
-}
+    login,
+    profile
+};
