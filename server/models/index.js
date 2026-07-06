@@ -15,10 +15,13 @@ RegionalDistributionCenter.hasMany(User, {
 User.belongsTo(RegionalDistributionCenter, {
   foreignKey: "rdc_id",
 });
+const Category = require("./Category");
+
 
 module.exports = {
   sequelize,
   Role,
   User,
   RegionalDistributionCenter,
+  Category
 };

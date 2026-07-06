@@ -7,4 +7,7 @@ const rdcRoutes = require("./rdc.routes");
 router.use("/auth", authRoutes);
 router.use("/rdcs", rdcRoutes);
 
+const categoryRoutes = require("./category.routes");
+
+router.use("/categories", categoryRoutes);
 module.exports = router;
