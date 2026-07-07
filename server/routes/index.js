@@ -11,3 +11,7 @@ const categoryRoutes = require("./category.routes");
 
 router.use("/categories", categoryRoutes);
 module.exports = router;
+
+const productRoutes = require("./product.routes");
+
+router.use("/products",productRoutes);
