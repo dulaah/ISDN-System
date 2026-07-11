@@ -14,4 +14,7 @@ module.exports = router;
 
 const productRoutes = require("./product.routes");
 
-router.use("/products",productRoutes);
+router.use("/products", productRoutes);
+const dashboardRoutes = require("./dashboard.routes");
+
+router.use("/dashboard", dashboardRoutes);
