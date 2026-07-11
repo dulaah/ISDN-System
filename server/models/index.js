@@ -18,15 +18,9 @@ User.belongsTo(RegionalDistributionCenter, {
 const Category = require("./Category");
 
 const Product = require("./Product");
-const Category = require("./Category");
 
-Category.hasMany(Product, {
-    foreignKey: "category_id"
-});
 
-Product.belongsTo(Category, {
-    foreignKey: "category_id"
-});
+
 
 module.exports = {
     sequelize,
