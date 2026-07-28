@@ -8,7 +8,7 @@ const summary = async (req, res) => {
         success: true,
         data
     });
-aaaa
+
 };
 
 module.exports = {
