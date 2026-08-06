@@ -9,8 +9,8 @@ const summary = async (req, res) => {
         data
     });
 
-};s
-s
+};
+
 module.exports = {
     summary
 };
