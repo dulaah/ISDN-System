@@ -10,7 +10,7 @@ const summary = async (req, res) => {
     });
 
 };
-ss
+
 module.exports = {
     summary
 };
